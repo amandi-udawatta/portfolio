@@ -27,7 +27,7 @@ export default function HeroSection() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-10">
         <div className="grid lg:grid-cols-3 gap-12 lg:gap-16 items-center">
           {/* Left Content */}
-          <div className="space-y-6 lg:space-y-8 text-center lg:text-left order-2 lg:order-1 lg:col-span-2">
+          <div className="space-y-6 lg:space-y-8 text-center lg:text-left order-1 lg:order-1 lg:col-span-2">
 
             {/* Name & Title */}
             <div className="space-y-3">
@@ -103,7 +103,7 @@ export default function HeroSection() {
           </div>
 
           {/* Right Content - 3D Spline Animation */}
-          <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
+          <div className="order-2 lg:order-2 flex justify-center lg:justify-end">
             <div className="fish-container w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl h-[500px] sm:h-[500px] md:h-[600px] lg:h-[600px] xl:h-[700px] translate-y-12 -mb-12 lg:translate-y-0 lg:mb-0">              {isSplineLoading && (
                 <div className="absolute inset-0 flex items-center justify-center z-10">
                   <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin" />
