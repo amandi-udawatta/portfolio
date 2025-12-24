@@ -104,7 +104,7 @@ export default function HeroSection() {
 
           {/* Right Content - 3D Spline Animation */}
           <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
-            <div className="fish-container w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl h-[500px] sm:h-[500px] md:h-[600px] lg:h-[600px] xl:h-[700px]">
+            <div className="fish-container w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] xl:h-[700px]">
               {isSplineLoading && (
                 <div className="absolute inset-0 flex items-center justify-center z-10">
                   <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin" />
