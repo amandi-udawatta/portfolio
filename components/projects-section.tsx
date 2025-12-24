@@ -1,184 +1,184 @@
-/**
- * Projects Section Component
- * Showcase of key projects with technologies and achievements
- */
+"use client"
 
-import { ExternalLink, Github } from "lucide-react"
+import { useState } from "react"
+import { Github, Globe, BrainCircuit } from "lucide-react"
 import { Card } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
+import Image from "next/image"
 
 export default function ProjectsSection() {
+  const [activeTab, setActiveTab] = useState("web")
+
   const projects = [
+    // --- WEB DEVELOPMENT PROJECTS ---
     {
+      category: "web",
       title: "Wandr",
       period: "Jun 2024 – Present",
       description:
-        "All-in-one travel application featuring personalized route suggestions, interactive maps, and travel journaling. Includes e-commerce platform for local products and business management tools.",
-      features: [
-        "Personalized route suggestions using AI",
-        "Interactive maps with Google Places API integration",
-        "Travel journaling with OpenAI-powered descriptions",
-        "E-commerce platform for local products",
-        "Business profile management and targeted advertising",
-      ],
-      technologies: ["Spring Boot", "PostgreSQL", "FastAPI", "Next.js", "Tailwind CSS", "Flutter", "OpenAI API"],
+        "A travel and tourism platform that helps users plan trips with personalized routes, discover nearby places, and explore local businesses. It also allows businesses to promote their services to tourists through the platform.",
+      
+      technologies: ["Spring Boot", "PostgreSQL", "Next.js", "Flutter", , "FastAPI", "OpenAI API", "Google Maps API", "Places API"],
       github: "https://github.com/amandi-udawatta/wandr-backend",
-      featured: true,
+      image: "/projects/wandr.png", 
     },
     {
-      title: "Breast Cancer Diagnosis",
-      period: "Aug 2024",
-      description:
-        "Machine learning project utilizing Artificial Neural Networks to classify breast cancer tumors as benign or malignant using the Wisconsin dataset.",
-      features: [
-        "Complete data pipeline with preprocessing",
-        "Neural network using TensorFlow and Keras",
-        "Model evaluation with ROC curve and AUC score",
-        "Confusion matrix analysis for performance metrics",
-      ],
-      technologies: ["Python", "TensorFlow", "Keras", "scikit-learn", "Matplotlib", "Seaborn"],
-      github: "https://github.com/amandi-udawatta/Breast-Cancer-Classification",
-      featured: true,
-    },
-    {
+      category: "web",
       title: "Pawfect Care",
       period: "Jun 2023 – Apr 2024",
       description:
-        "Pet care center management system facilitating appointments, daycare bookings, and comprehensive medical records management for both pet owners and staff.",
-      features: [
-        "Appointment booking system for vet visits",
-        "Daycare scheduling and management",
-        "Emergency ambulance service coordination",
-        "Medical records accessible to pet owners",
-        "Staff dashboard for data management",
-        "Administrative reporting tools",
-      ],
-      technologies: ["HTML", "CSS", "JavaScript", "PHP", "MySQL", "jQuery"],
+        "A pet care management platform that helps pet owners easily book vet appointments, schedule daycare, access emergency services, and view their pets’ medical history, while enabling pet care centers to manage bookings, services, and medical records in one place.",
+      technologies: ["PHP", "MySQL", "JavaScript", "HTML/CSS"],
       github: "https://github.com/amandi-udawatta/Pawfect-Care",
-      featured: false,
+      image: "/projects/pawfect care.png", 
     },
     {
+      category: "web",
       title: "BookWorm",
       period: "Jun 2023 – Oct 2023",
       description:
-        "Comprehensive library management system enabling efficient management of books, authors, genres, and member operations with secure authentication.",
+        "A library management system that helps librarians organize books, authors, genres, and members, while efficiently managing borrowing and returns through a simple and structured system.",
       features: [
-        "Book catalog management",
-        "Author and genre organization",
-        "Member and borrower tracking",
-        "Secure authentication with Passport.js",
-        "Librarian dashboard for CRUD operations",
+        "Catalog Management",
+        "Borrower Tracking",
+        "Secure Auth (Passport.js)",
+        "Librarian Dashboard",
       ],
-      technologies: ["Node.js", "Express", "React", "MongoDB", "Passport.js"],
+      technologies: ["Node.js", "React", "MongoDB", "Express"],
       github: "https://github.com/amandi-udawatta/bookworm",
-      featured: false,
+      image: "/projects/bookworm.png", 
+    },
+
+    // --- MACHINE LEARNING PROJECTS ---
+    {
+      category: "ml",
+      title: "Breast Cancer Diagnosis",
+      period: "Aug 2024",
+      description:
+        "This project is a machine learning application that uses a neural network to classify breast tumors as benign or malignant, helping demonstrate how data-driven models can support early and accurate medical diagnosis.",
+      technologies: ["Python", "TensorFlow", "Keras", "NumPy"],
+      github: "https://github.com/amandi-udawatta/Breast-Cancer-Classification",
+      image: "/projects/breast cancer.png", 
     },
     {
+      category: "ml",
       title: "Student Performance Prediction",
       period: "Jun 2024",
       description:
-        "Machine learning model using Multiple Linear Regression to predict student performance based on study habits and other factors.",
-      features: [
-        "Multiple Linear Regression implementation",
-        "Gradient Descent optimization",
-        "Feature analysis (study hours, previous scores, activities)",
-        "Data normalization for accuracy",
-        "Residual plots and performance visualization",
-      ],
-      technologies: ["Python", "NumPy", "Pandas", "scikit-learn", "Matplotlib"],
+        "This project predicts student performance based on factors such as study habits, prior results, and daily routines, showing how multiple linear regression can be used to understand and analyze the impact of different factors on academic outcomes.",
+      technologies: ["Python", "NumPy", "Pandas", "Matplotlib"],
       github: "https://github.com/amandi-udawatta/Student-Performance-Prediction-Model",
-      featured: false,
+      image: "/projects/student performance.png", 
     },
   ]
+
+  const filteredProjects = projects.filter((project) => project.category === activeTab)
 
   return (
     <section id="projects" className="py-20 lg:py-32 bg-background-secondary">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        
         {/* Section Header */}
-        <div className="text-center mb-12 lg:mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
             Featured <span className="text-primary">Projects</span>
           </h2>
-          <p className="text-lg text-foreground-secondary max-w-2xl mx-auto text-pretty">
-            A selection of my technical projects spanning full-stack development and machine learning
-          </p>
+          
+          {/* Responsive Tabs */}
+          <div className="inline-flex p-1 bg-surface border border-border rounded-full shadow-sm max-w-full overflow-x-auto">
+            <button
+              onClick={() => setActiveTab("web")}
+              className={`flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold whitespace-nowrap transition-all duration-300 ${
+                activeTab === "web"
+                  ? "bg-primary text-primary-foreground shadow-md"
+                  : "text-foreground-secondary hover:text-foreground"
+              }`}
+            >
+              <Globe className="w-3 h-3 sm:w-4 sm:h-4" />
+              Web Development
+            </button>
+            <button
+              onClick={() => setActiveTab("ml")}
+              className={`flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold whitespace-nowrap transition-all duration-300 ${
+                activeTab === "ml"
+                  ? "bg-primary text-primary-foreground shadow-md"
+                  : "text-foreground-secondary hover:text-foreground"
+              }`}
+            >
+              <BrainCircuit className="w-3 h-3 sm:w-4 sm:h-4" />
+              Machine Learning
+            </button>
+          </div>
         </div>
 
         {/* Projects Grid */}
-        <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 max-w-7xl mx-auto">
-          {projects.map((project, index) => (
-            <Card
-              key={index}
-              className={`p-6 lg:p-8 bg-surface border-border hover:border-primary transition-all duration-300 hover:shadow-xl group ${
-                project.featured ? "lg:col-span-2" : ""
-              }`}
+        <div className="max-w-5xl mx-auto space-y-6">
+          {filteredProjects.map((project, index) => (
+            <a 
+              key={index} 
+              href={project.github} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="block group"
             >
-              <div className="space-y-4">
-                {/* Project Header */}
-                <div className="flex items-start justify-between gap-4">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2">
-                      <h3 className="text-xl lg:text-2xl font-bold text-foreground group-hover:text-primary transition-colors">
-                        {project.title}
-                      </h3>
-                      {project.featured && (
-                        <span className="text-xs font-semibold px-2 py-1 bg-primary/20 text-primary rounded-full">
-                          Featured
-                        </span>
-                      )}
+              {/* Card Container with padding */}
+              <Card className="p-5 sm:p-6 lg:p-8 bg-surface border border-border transition-all duration-300 ease-in-out hover:-translate-y-2 hover:border-primary hover:shadow-2xl">
+                
+                <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
+                  
+                  {/* Left Side: Content */}
+                  <div className="flex-1 flex flex-col justify-between order-2 lg:order-1">
+                    <div>
+                      {/* Title & Github Icon */}
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="text-xl sm:text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
+                          {project.title}
+                        </h3>
+                        <Github className="w-5 h-5 text-foreground-tertiary group-hover:text-primary transition-colors" />
+                      </div>
+                      
+                      <p className="text-sm font-medium text-foreground-tertiary mb-4">
+                        {project.period}
+                      </p>
+
+                      <p className="text-sm sm:text-base text-foreground-secondary leading-relaxed mb-6">
+                        {project.description}
+                      </p>
+
+                      
                     </div>
-                    <p className="text-sm text-foreground-tertiary font-medium">{project.period}</p>
-                  </div>
-                  <div className="flex gap-2">
-                    {project.github && (
-                      <a href={project.github} target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">
-                        <Button
-                          size="icon"
-                          variant="ghost"
-                          className="text-foreground-secondary hover:text-primary hover:bg-primary/10"
+
+                    {/* Technologies Tags */}
+                    <div className="flex flex-wrap gap-2 pt-4 border-t border-border mt-auto">
+                      {project.technologies.map((tech, idx) => (
+                        <span
+                          key={idx}
+                          className="text-xs font-medium px-2.5 py-1 sm:px-3 sm:py-1.5 bg-primary/5 text-primary rounded-full border border-primary/20 transition-colors duration-300 group-hover:bg-primary/10 group-hover:border-primary/40"
                         >
-                          <Github className="h-5 w-5" />
-                        </Button>
-                      </a>
-                    )}
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
 
-                {/* Description */}
-                <p className="text-sm lg:text-base text-foreground-secondary leading-relaxed">{project.description}</p>
-
-                {/* Features */}
-                <div>
-                  <h4 className="text-sm font-semibold text-foreground mb-2">Key Features:</h4>
-                  <ul className="space-y-1">
-                    {project.features.map((feature, idx) => (
-                      <li key={idx} className="flex gap-2 text-sm text-foreground-secondary">
-                        <span className="text-primary mt-0.5">▹</span>
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Technologies */}
-                <div className="pt-4 border-t border-border">
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech, idx) => (
-                      <span
-                        key={idx}
-                      className="text-xs font-medium px-3 py-1.5 bg-primary/5 text-primary rounded-full border border-primary/20 transition-colors duration-300 group-hover:bg-primary/10 group-hover:border-primary/40"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                  {/* Right Side: Image 
+                      - Mobile: order-1 (Top), Fixed Height (h-48), Full Width
+                      - Desktop: order-2 (Right), Auto Height, Fixed Width (w-[350px]) 
+                  */}
+                  <div className="relative w-full lg:w-87.5 h-48 lg:h-auto shrink-0 rounded-xl overflow-hidden order-1 lg:order-2 border border-border/50">
+                    <div className="absolute inset-0 bg-primary/5 group-hover:bg-transparent transition-colors duration-300 z-10" />
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
                   </div>
+
                 </div>
-              </div>
-            </Card>
+              </Card>
+            </a>
           ))}
         </div>
-
-      
       </div>
     </section>
   )

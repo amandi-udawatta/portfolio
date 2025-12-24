@@ -62,9 +62,7 @@ export default function ExperienceSection() {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
             Work <span className="text-primary">Experience</span>
           </h2>
-          <p className="text-lg text-foreground-secondary max-w-2xl mx-auto text-pretty">
-            Professional journey building enterprise solutions and full-stack applications
-          </p>
+        
         </div>
 
         {/* Timeline */}
