@@ -5,12 +5,14 @@
 
 import { Briefcase, Calendar } from "lucide-react"
 import { Card } from "@/components/ui/card"
+import Image from "next/image"
 
 export default function ExperienceSection() {
   const experiences = [
     {
       title: "Part-Time Consultant, Software Engineer",
       company: "VizuaMatix",
+      logo: "/company/vizuamatix.png", 
       period: "June 2025 – August 2025",
       location: "Colombo, Sri Lanka",
       responsibilities: [
@@ -24,6 +26,7 @@ export default function ExperienceSection() {
     {
       title: "Software Engineer Intern",
       company: "VizuaMatix",
+      logo: "/company/vizuamatix.png",
       period: "Nov 2024 – Apr 2025",
       location: "Colombo, Sri Lanka",
       responsibilities: [
@@ -38,6 +41,7 @@ export default function ExperienceSection() {
     {
       title: "Pre-Intern, Software Engineer",
       company: "VizuaMatix",
+      logo: "/company/vizuamatix.png",
       period: "May 2024 – September 2024",
       location: "Colombo, Sri Lanka",
       responsibilities: [
@@ -68,19 +72,40 @@ export default function ExperienceSection() {
           {experiences.map((exp, index) => (
             <Card
               key={index}
-              className="p-6 lg:p-8 bg-surface border-border hover:border-primary transition-all duration-300 hover:shadow-lg relative"
+              // hover:-translate-y-2: moves card up
+              // hover:shadow-2xl: adds deep shadow
+              // transition-all duration-300 ease-in-out: smooths the animation
+              className="group relative p-6 lg:p-8 bg-surface border border-border transition-all duration-300 ease-in-out hover:-translate-y-2 hover:border-primary hover:shadow-2xl"
             >
               {/* Timeline Connector */}
               {index !== experiences.length - 1 && (
-                <div className="hidden lg:block absolute left-1/2 -bottom-8 w-0.5 h-8 bg-border" />
+                // Added group-hover:h-12 to slightly elongate the line when card lifts, maintaining connection visually
+                <div className="hidden lg:block absolute left-1/2 -bottom-8 w-0.5 h-8 bg-border transition-all duration-300" />
               )}
 
               <div className="space-y-4">
                 {/* Header */}
                 <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-3">
                   <div>
-                    <h3 className="text-xl lg:text-2xl font-bold text-foreground mb-1">{exp.title}</h3>
-                    <p className="text-lg font-semibold text-primary">{exp.company}</p>
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="relative overflow-hidden rounded-md mr-2">
+                         <Image
+                          src={exp.logo}
+                          alt={exp.company}
+                          width={40}
+                          height={40}
+                          className="object-contain"
+                        />
+                      </div>
+                      <div>
+                        <h3 className="text-xl lg:text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
+                          {exp.title}
+                        </h3>
+                        <p className="text-lg font-semibold text-primary/80 group-hover:text-primary transition-colors duration-300">
+                          {exp.company}
+                        </p>
+                      </div>
+                    </div>
                   </div>
                   <div className="flex flex-col lg:items-end gap-1">
                     <div className="flex items-center gap-2 text-foreground-secondary">
@@ -97,8 +122,8 @@ export default function ExperienceSection() {
                 {/* Responsibilities */}
                 <ul className="space-y-2 mt-4">
                   {exp.responsibilities.map((responsibility, idx) => (
-                    <li key={idx} className="flex gap-3 text-foreground-secondary">
-                      <span className="text-primary mt-1.5 shrink-0">▹</span>
+                    <li key={idx} className="flex gap-3 text-foreground-secondary mt-2">
+                      <span className="text-primary  shrink-0 transition-transform duration-300 group-hover:scale-125">▹</span>
                       <span className="text-sm lg:text-base leading-relaxed">{responsibility}</span>
                     </li>
                   ))}
@@ -109,7 +134,7 @@ export default function ExperienceSection() {
                   {exp.technologies.map((tech, idx) => (
                     <span
                       key={idx}
-                      className="text-xs font-medium px-3 py-1.5 bg-primary/10 text-primary rounded-full border border-primary/20"
+                      className="text-xs font-medium px-3 py-1.5 bg-primary/5 text-primary rounded-full border border-primary/20 transition-colors duration-300 group-hover:bg-primary/10 group-hover:border-primary/40"
                     >
                       {tech}
                     </span>

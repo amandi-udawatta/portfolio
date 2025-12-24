@@ -166,7 +166,7 @@ export default function ProjectsSection() {
                     {project.technologies.map((tech, idx) => (
                       <span
                         key={idx}
-                        className="text-xs font-medium px-3 py-1.5 bg-surface-elevated text-foreground-secondary rounded-full border border-border hover:border-primary hover:text-primary transition-colors"
+                      className="text-xs font-medium px-3 py-1.5 bg-primary/5 text-primary rounded-full border border-primary/20 transition-colors duration-300 group-hover:bg-primary/10 group-hover:border-primary/40"
                       >
                         {tech}
                       </span>
@@ -178,19 +178,7 @@ export default function ProjectsSection() {
           ))}
         </div>
 
-        {/* View More */}
-        <div className="text-center mt-12">
-          <a href="https://github.com/amandi-udawatta" target="_blank" rel="noopener noreferrer">
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-2 border-primary text-primary hover:bg-primary hover:text-white font-medium group bg-transparent"
-            >
-              View All Projects on GitHub
-              <ExternalLink className="ml-2 h-4 w-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-            </Button>
-          </a>
-        </div>
+      
       </div>
     </section>
   )
