@@ -5,7 +5,7 @@
  * Landing section with animated text, CTA buttons, and 3D Spline animation
  */
 
-import { ArrowRight, Github, Linkedin, Mail, FileText, Fish } from "lucide-react"
+import { ArrowRight, Github, Linkedin, Mail, FileText } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Spline from "@splinetool/react-spline"
 import { useState } from "react"
@@ -23,7 +23,7 @@ export default function HeroSection() {
 
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center relative pt-16 overflow-visible">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Content */}
           <div className="space-y-6 lg:space-y-8 text-center lg:text-left order-2 lg:order-1">
@@ -33,9 +33,9 @@ export default function HeroSection() {
               <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground leading-tight text-balance">
                 Amandi Udawatta
               </h1>
-              <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
-                <span className="text-xl sm:text-2xl lg:text-3xl font-semibold text-primary">Software Engineer</span>
-                <span className="text-xl sm:text-2xl lg:text-3xl font-semibold text-foreground-secondary">
+              <div className="flex flex-wrap gap-2 justify-center lg:justify-start text-xl sm:text-2xl lg:text-3xl font-semibold">
+                <span className="text-primary">Software Engineer</span>
+                <span className="text-foreground-secondary">
                   & CS Undergraduate
                 </span>
               </div>
@@ -106,7 +106,7 @@ export default function HeroSection() {
           </div>
 
           {/* Right Content - 3D Spline Animation */}
-          <div className="order-1 lg:order-2 flex justify-right lg:justify-end">
+          <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
             <div className="fish-container w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl h-[300px] sm:h-[400px] md:h-[450px] lg:h-[500px] xl:h-[600px]">
               {isSplineLoading && (
                 <div className="absolute inset-0 flex items-center justify-center z-10">

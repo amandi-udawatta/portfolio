@@ -1,5 +1,5 @@
 import type React from "react"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -31,6 +31,15 @@ export const metadata: Metadata = {
     apple: "/apple-icon.png",
   },
 }
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false, // Optional: prevents zooming if you want a strict "app-like" feel
+  // careful with userScalable=false as it hurts accessibility, 
+  // but it fixes your specific "pinch to see white space" issue immediately.
+};
 
 export default function RootLayout({
   children,
