@@ -27,11 +27,7 @@ export default function HeroSection() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Content */}
           <div className="space-y-6 lg:space-y-8 text-center lg:text-left order-2 lg:order-1">
-            {/* Greeting */}
-            <div className="inline-block">
-              <p className="text-sm md:text-base font-medium text-foreground-secondary mb-2">Hey there! 👋 I'm</p>
-            </div>
-
+            
             {/* Name & Title */}
             <div className="space-y-3">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground leading-tight text-balance">
