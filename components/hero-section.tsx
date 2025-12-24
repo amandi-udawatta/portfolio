@@ -70,41 +70,11 @@ export default function HeroSection() {
               </Button>
 
             </div>
-
-            {/* Social Links */}
-            <div className="flex gap-4 justify-center lg:justify-start pt-4">
-              <a
-                href="https://github.com/amandi-udawatta"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-foreground-secondary hover:text-primary transition-colors p-2 hover:bg-surface-elevated rounded-lg"
-                aria-label="GitHub"
-              >
-                <Github className="h-5 w-5" />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/amandi-udawatta/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-foreground-secondary hover:text-primary transition-colors p-2 hover:bg-surface-elevated rounded-lg"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="h-5 w-5" />
-              </a>
-              <a
-                href="mailto:amandiudawatta@gmail.com"
-                className="text-foreground-secondary hover:text-primary transition-colors p-2 hover:bg-surface-elevated rounded-lg"
-                aria-label="Email"
-              >
-                <Mail className="h-5 w-5" />
-              </a>
-        
-            </div>
           </div>
 
           {/* Right Content - 3D Spline Animation */}
           <div className="order-2 lg:order-2 flex justify-center lg:justify-end">
-            <div className="fish-container w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl h-[500px] sm:h-[500px] md:h-[600px] lg:h-[600px] xl:h-[700px] translate-y-12 -mb-12 lg:translate-y-0 lg:mb-0">              {isSplineLoading && (
+            <div className="fish-container w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl h-125 sm:h-125 md:h-150 lg:h-150 xl:h-175 translate-y-12 -mb-12 lg:translate-y-0 lg:mb-0">              {isSplineLoading && (
                 <div className="absolute inset-0 flex items-center justify-center z-10">
                   <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin" />
                 </div>

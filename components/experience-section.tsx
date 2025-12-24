@@ -98,7 +98,7 @@ export default function ExperienceSection() {
                 <ul className="space-y-2 mt-4">
                   {exp.responsibilities.map((responsibility, idx) => (
                     <li key={idx} className="flex gap-3 text-foreground-secondary">
-                      <span className="text-primary mt-1.5 flex-shrink-0">▹</span>
+                      <span className="text-primary mt-1.5 shrink-0">▹</span>
                       <span className="text-sm lg:text-base leading-relaxed">{responsibility}</span>
                     </li>
                   ))}
