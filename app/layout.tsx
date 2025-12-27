@@ -9,7 +9,7 @@ const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Amandi Udawatta | Software Engineer & CS Undergraduate",
+  title: "Amandi Udawatta",
   description:
     "Portfolio of Amandi Udawatta - Computer Science undergraduate specializing in backend development and machine learning",
   generator: "v0.app",
@@ -48,9 +48,6 @@ export const metadata: Metadata = {
         alt: "Amandi Udawatta Portfolio",
       },
     ],
-  },
-  verification: {
-    google: "PASTE_THE_LONG_CODE_HERE", 
   },
 }
 
