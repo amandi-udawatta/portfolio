@@ -1,55 +1,50 @@
-/**
- * Footer Component
- * Site footer with copyright and social links
- */
+"use client"
 
-import { Github, Linkedin, Mail, Heart } from "lucide-react"
+import { Heart } from "lucide-react"
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-background border-t border-border py-8">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          {/* Copyright */}
-          <p className="text-sm text-foreground-secondary text-center md:text-left">
-            © {currentYear} Amandi Udawatta. Built with <Heart className="inline h-4 w-4 text-primary fill-primary" />{" "}
-            using Next.js
-          </p>
+    <footer className="relative w-full pt-32 pb-10 overflow-hidden">
+      
+      {/* BACKGROUND IMAGE LAYER */}
+      <div className="absolute inset-0 w-full h-full z-0">
+        {/* The Aquatic Image */}
+        <img
+          src="/footer.png" // Ensure your image is named this in the public folder
+          alt="Footer Background"
+          className="w-full h-full object-cover"
+        />
+        
+        {/* Gradient Overlay - Makes the text readable while keeping the orange vibe */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+      </div>
 
-          {/* Social Links */}
-          <div className="flex items-center gap-4">
-            <a
-              href="https://github.com/amandi-udawatta"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-foreground-secondary hover:text-primary transition-colors"
-              aria-label="GitHub"
-            >
-              <Github className="h-5 w-5" />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/amandi-udawatta/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-foreground-secondary hover:text-primary transition-colors"
-              aria-label="LinkedIn"
-            >
-              <Linkedin className="h-5 w-5" />
-            </a>
-            <a
-              href="mailto:amandiudawatta@gmail.com"
-              className="text-foreground-secondary hover:text-primary transition-colors"
-              aria-label="Email"
-            >
-              <Mail className="h-5 w-5" />
-            </a>
+      <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col items-center justify-center text-center space-y-12">
+          
+          {/* THE "BIG FUN THING" */}
+          <div className="space-y-4">
+            <h2 className="text-3xl md:text-4xl lg:text-6xl font-black text-white tracking-tighter drop-shadow-3xl">
+              Thanks for stopping by!
+            </h2>
+          
           </div>
-        </div>
 
-        {/* Attribution */}
-        <p className="text-xs text-foreground-tertiary text-center mt-4">Designed & Developed by Amandi Udawatta</p>
+          {/* DIVIDER */}
+          <div className="w-full max-w-2xl h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+
+          {/* BOTTOM BAR: Copyright & Attribution */}
+          <div className="flex flex-col md:flex-row items-center justify-center w-full max-w-4xl gap-4 text-sm text-white/50">
+            <p>
+              © {currentYear} Amandi Udawatta. All rights reserved.
+            </p>
+            
+           
+          </div>
+
+        </div>
       </div>
     </footer>
   )

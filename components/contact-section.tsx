@@ -1,20 +1,20 @@
 "use client"
 
 import type React from "react"
-
-/**
- * Contact Section Component
- * Contact information and email form
- */
-
-import { Mail, MapPin, Phone, Github, Linkedin, Send } from "lucide-react"
+import { useState, useRef } from "react"
+import { Mail, MapPin, Github, Linkedin, MessagesSquare, Loader2, CheckCircle2 } from "lucide-react"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { useState } from "react"
+import emailjs from "@emailjs/browser"
+// import { toast } from "sonner" // Uncomment if using toast
 
 export default function ContactSection() {
+  const formRef = useRef<HTMLFormElement>(null)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSuccess, setIsSuccess] = useState(false)
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -22,50 +22,32 @@ export default function ContactSection() {
     message: "",
   })
 
+  // Contact Info Data
   const contactInfo = [
     {
       icon: Mail,
-      title: "Email",
       value: "amandiudawatta@gmail.com",
       href: "mailto:amandiudawatta@gmail.com",
-    },
-    {
-      icon: Phone,
-      title: "Phone",
-      value: "+94 77 444 1482",
-      href: "tel:+94774441482",
+      label: "Drop me a mail",
     },
     {
       icon: MapPin,
-      title: "Location",
       value: "Kalutara, Sri Lanka",
       href: null,
+      label: "Based in",
     },
   ]
 
   const socialLinks = [
     {
       icon: Github,
-      name: "GitHub",
       href: "https://github.com/amandi-udawatta",
-      username: "@amandi-udawatta",
     },
     {
       icon: Linkedin,
-      name: "LinkedIn",
       href: "https://www.linkedin.com/in/amandi-udawatta/",
-      username: "Amandi Udawatta",
     },
   ]
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Construct mailto link with form data
-    const mailtoLink = `mailto:amandiudawatta@gmail.com?subject=${encodeURIComponent(
-      formData.subject,
-    )}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)}`
-    window.location.href = mailtoLink
-  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData((prev) => ({
@@ -74,142 +56,175 @@ export default function ContactSection() {
     }))
   }
 
+  const sendEmail = (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+
+    // Access environment variables
+    const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!
+    const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!
+    const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+
+    // Optional: Log error if keys are missing (helps debugging)
+    if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
+      console.error("EmailJS keys are missing from .env.local")
+      alert("Configuration Error: Email service is not set up correctly.")
+      setIsSubmitting(false)
+      return
+    }
+
+    // Map your form data to the template variables you created in EmailJS
+    const templateParams = {
+      from_name: formData.name,
+      from_email: formData.email,
+      subject: formData.subject,
+      message: formData.message,
+    }
+
+    emailjs
+      .send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY)
+      .then(
+        (result) => {
+          console.log(result.text)
+          setIsSubmitting(false)
+          setIsSuccess(true)
+          setFormData({ name: "", email: "", subject: "", message: "" }) // Reset form
+          
+          // Reset success message after 5 seconds
+          setTimeout(() => setIsSuccess(false), 5000)
+        },
+        (error) => {
+          console.log(error.text)
+          setIsSubmitting(false)
+          alert("Oops! Something went wrong. Please try again.")
+        },
+      )
+  }
+
   return (
-    <section id="contact" className="py-20 lg:py-32 bg-background-secondary">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+    <section id="contact" className="py-20 lg:py-32 bg-background-secondary relative overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* Fun Header */}
         <div className="text-center mb-12 lg:mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            Get In <span className="text-primary">Touch</span>
+          <h2 className="text-4xl lg:text-6xl font-black text-foreground mb-4 tracking-tight">
+            Let's <span className="text-primary">Chat!</span>
           </h2>
-          <p className="text-lg text-foreground-secondary max-w-2xl mx-auto text-pretty">
-            I'm always open to discussing new projects, opportunities, or collaborations
+          <p className="text-xl text-foreground-secondary max-w-2xl mx-auto font-medium">
+            Got a project in mind? Or just want to talk about movies and food?
           </p>
         </div>
 
-        <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
-            {/* Left Column - Contact Info */}
-            <div className="space-y-6">
-              {/* Contact Cards */}
+        <div className="max-w-5xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-10 items-center">
+            
+            {/* Left Column - Vibe & Info */}
+            <div className="space-y-8 order-2 lg:order-1 text-center lg:text-left">
+              
+              {/* Coffee Invite Card */}
+              <div className="bg-surface p-6 rounded-2xl border-2 border-dashed border-primary/30 transform hover:-rotate-1 transition-transform duration-300">
+                <div className="flex items-center justify-center lg:justify-start gap-3 mb-2">
+                  <MessagesSquare className="w-6 h-6 text-primary animate-bounce" />
+                  <h3 className="text-xl font-bold text-foreground">Wanna have a chat?</h3>
+                </div>
+                <p className="text-foreground-secondary">
+                  I'm always down to talk tech, share movie recommendations, or just hear your latest crazy idea.
+                </p>
+              </div>
+
+              {/* Minimal Contact List */}
               <div className="space-y-4">
                 {contactInfo.map((info, index) => (
-                  <Card
-                    key={index}
-                    className="p-6 bg-surface border-border hover:border-primary transition-all duration-300 group"
-                  >
-                    {info.href ? (
-                      <a
-                        href={info.href}
-                        className="flex items-center gap-4"
-                        target={info.href.startsWith("http") ? "_blank" : undefined}
-                        rel={info.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                      >
-                        <div className="p-3 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
-                          <info.icon className="h-5 w-5 text-primary" />
-                        </div>
-                        <div>
-                          <h3 className="text-sm font-semibold text-foreground-tertiary mb-1">{info.title}</h3>
-                          <p className="text-base font-medium text-foreground group-hover:text-primary transition-colors">
-                            {info.value}
-                          </p>
-                        </div>
-                      </a>
-                    ) : (
-                      <div className="flex items-center gap-4">
-                        <div className="p-3 bg-primary/10 rounded-lg">
-                          <info.icon className="h-5 w-5 text-primary" />
-                        </div>
-                        <div>
-                          <h3 className="text-sm font-semibold text-foreground-tertiary mb-1">{info.title}</h3>
-                          <p className="text-base font-medium text-foreground">{info.value}</p>
-                        </div>
-                      </div>
-                    )}
-                  </Card>
+                  <div key={index} className="flex flex-col lg:flex-row items-center gap-3 justify-center lg:justify-start">
+                    <div className="w-10 h-10 rounded-full bg-surface-elevated flex items-center justify-center text-primary shrink-0">
+                      <info.icon className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-foreground-tertiary uppercase tracking-wider">{info.label}</p>
+                      {info.href ? (
+                        <a href={info.href} className="text-lg font-semibold text-foreground hover:text-primary transition-colors">
+                          {info.value}
+                        </a>
+                      ) : (
+                        <p className="text-lg font-semibold text-foreground">{info.value}</p>
+                      )}
+                    </div>
+                  </div>
                 ))}
               </div>
 
-              {/* Social Links */}
-              <Card className="p-6 bg-surface border-border">
-                <h3 className="text-lg font-bold text-foreground mb-4">Connect With Me</h3>
-                <div className="space-y-3">
+              {/* Social Icons */}
+              <div className="pt-4">
+                <p className="text-sm font-medium text-foreground-secondary mb-4">Stalk my code & career:</p>
+                <div className="flex items-center justify-center lg:justify-start gap-4">
                   {socialLinks.map((social, index) => (
                     <a
                       key={index}
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-4 p-3 rounded-lg hover:bg-surface-elevated transition-colors group"
+                      className={`p-4 bg-surface rounded-2xl border-2 border-border hover:border-primary hover:-translate-y-2 hover:shadow-xl transition-all duration-300 group`}
                     >
-                      <social.icon className="h-5 w-5 text-primary" />
-                      <div>
-                        <p className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
-                          {social.name}
-                        </p>
-                        <p className="text-xs text-foreground-secondary">{social.username}</p>
-                      </div>
+                      <social.icon className="w-8 h-8 transition-colors" />
                     </a>
                   ))}
                 </div>
-              </Card>
+              </div>
             </div>
 
-            {/* Right Column - Contact Form */}
-            <Card className="p-6 lg:p-8 bg-surface border-border">
-              <h3 className="text-xl lg:text-2xl font-bold text-foreground mb-6">Send Me a Message</h3>
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label htmlFor="name" className="text-sm font-medium text-foreground-secondary mb-2 block">
-                    Name *
-                  </label>
-                  <Input
-                    id="name"
-                    name="name"
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={handleChange}
-                    placeholder="Your name"
-                    className="bg-background border-border focus:border-primary"
-                  />
+            {/* Right Column - The "Fun" Form */}
+            <Card className="p-6 lg:p-8 bg-surface border-border shadow-2xl rounded-2xl order-1 lg:order-2">
+              <form ref={formRef} onSubmit={sendEmail} className="space-y-5">
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <label htmlFor="name" className="text-sm font-bold text-foreground ml-1">
+                      What's your name?
+                    </label>
+                    <Input
+                      id="name"
+                      name="name"
+                      required
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder="Bla Bla Doe"
+                      className="bg-background-secondary border-transparent focus:border-primary rounded-xl h-12"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label htmlFor="email" className="text-sm font-bold text-foreground ml-1">
+                      Your email?
+                    </label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      required
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder="blabla@example.com"
+                      className="bg-background-secondary border-transparent focus:border-primary rounded-xl h-12"
+                    />
+                  </div>
                 </div>
 
-                <div>
-                  <label htmlFor="email" className="text-sm font-medium text-foreground-secondary mb-2 block">
-                    Email *
-                  </label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="your.email@example.com"
-                    className="bg-background border-border focus:border-primary"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="subject" className="text-sm font-medium text-foreground-secondary mb-2 block">
-                    Subject *
+                <div className="space-y-2">
+                  <label htmlFor="subject" className="text-sm font-bold text-foreground ml-1">
+                    What's the vibe?
                   </label>
                   <Input
                     id="subject"
                     name="subject"
-                    type="text"
                     required
                     value={formData.subject}
                     onChange={handleChange}
-                    placeholder="What's this about?"
-                    className="bg-background border-border focus:border-primary"
+                    placeholder="Project proposal / Just saying hi!"
+                    className="bg-background-secondary border-transparent focus:border-primary rounded-xl h-12"
                   />
                 </div>
 
-                <div>
-                  <label htmlFor="message" className="text-sm font-medium text-foreground-secondary mb-2 block">
-                    Message *
+                <div className="space-y-2">
+                  <label htmlFor="message" className="text-sm font-bold text-foreground ml-1">
+                    Tell me everything
                   </label>
                   <Textarea
                     id="message"
@@ -217,19 +232,33 @@ export default function ContactSection() {
                     required
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Your message..."
-                    rows={5}
-                    className="bg-background border-border focus:border-primary resize-none"
+                    placeholder="I have this crazy idea..."
+                    rows={4}
+                    className="bg-background-secondary border-transparent focus:border-primary rounded-xl resize-none"
                   />
                 </div>
 
                 <Button
                   type="submit"
                   size="lg"
-                  className="w-full bg-primary hover:bg-primary-dark text-white font-medium shadow-lg hover:shadow-xl transition-all group"
+                  disabled={isSubmitting || isSuccess}
+                  className={`w-full font-bold h-12 rounded-xl shadow-lg transition-all duration-300 ${
+                    isSuccess 
+                      ? "bg-green-500 hover:bg-green-600 text-white" 
+                      : "bg-primary hover:bg-primary/90 text-primary-foreground hover:shadow-primary/25 hover:scale-[1.02]"
+                  }`}
                 >
-                  Send Message
-                  <Send className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Sending...
+                    </>
+                  ) : isSuccess ? (
+                    <>
+                      <CheckCircle2 className="mr-2 h-5 w-5" /> Message Sent!
+                    </>
+                  ) : (
+                    "Shoot Message"
+                  )}
                 </Button>
               </form>
             </Card>

@@ -60,7 +60,7 @@ export default function AwardsSection() {
   ]
 
   return (
-    <section id="honors" className="py-20 lg:py-32 bg-background">
+    <section id="awards" className="py-20 lg:py-32 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}

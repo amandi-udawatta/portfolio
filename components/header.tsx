@@ -1,12 +1,6 @@
 "use client"
 
 import type React from "react"
-
-/**
- * Header Navigation Component
- * Sticky header with smooth scroll navigation and theme toggle
- */
-
 import { useState, useEffect } from "react"
 import { Moon, Sun, Menu, X } from "lucide-react"
 import { useTheme } from "next-themes"
@@ -18,35 +12,36 @@ export default function Header() {
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
-  // Prevent hydration mismatch
-  useEffect(() => {
-    setMounted(true)
-  }, [])
+  useEffect(() => setMounted(true), [])
 
-  // Track scroll position for header styling
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
+    const handleScroll = () => setIsScrolled(window.scrollY > 50)
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  // Navigation items
+  // UPDATED NAV ITEMS based on your new section order
   const navItems = [
     { name: "About", href: "#about" },
-    { name: "Experience", href: "#experience" },
+    { name: "Experience", href: "#experience" }, // Education is usually grouped near About/Experience or can be implied
     { name: "Projects", href: "#projects" },
     { name: "Skills", href: "#skills" },
+    { name: "Awards", href: "#awards" }, // Added Awards since you have a section for it
     { name: "Contact", href: "#contact" },
   ]
 
-  // Handle smooth scroll and close mobile menu
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault()
     const element = document.querySelector(href)
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+      const headerOffset = 80
+      const elementPosition = element.getBoundingClientRect().top
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      })
       setIsMobileMenuOpen(false)
     }
   }
@@ -59,7 +54,6 @@ export default function Header() {
     >
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
           <a
             href="#hero"
             onClick={(e) => handleNavClick(e, "#hero")}
@@ -68,7 +62,7 @@ export default function Header() {
             Amandi<span className="text-primary">.</span>
           </a>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
             {navItems.map((item) => (
               <a
@@ -83,44 +77,40 @@ export default function Header() {
             ))}
           </div>
 
-          {/* Theme Toggle & Mobile Menu Button */}
+          {/* Controls */}
           <div className="flex items-center gap-2">
-            {/* Theme Toggle Button */}
             {mounted && (
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
                 className="text-foreground hover:text-primary hover:bg-surface-elevated"
-                aria-label="Toggle theme"
               >
                 {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
               </Button>
             )}
 
-            {/* Mobile Menu Toggle */}
             <Button
               variant="ghost"
               size="icon"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden text-foreground hover:text-primary hover:bg-surface-elevated"
-              aria-label="Toggle menu"
+              className="md:hidden text-foreground hover:text-primary"
             >
               {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </Button>
           </div>
         </div>
 
-        {/* Mobile Navigation Menu */}
+        {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-border animate-in slide-in-from-top-2">
+          <div className="md:hidden py-4 border-t border-border bg-background/95 backdrop-blur-md">
             <div className="flex flex-col gap-4">
               {navItems.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
                   onClick={(e) => handleNavClick(e, item.href)}
-                  className="text-base font-medium text-foreground-secondary hover:text-primary transition-colors px-2 py-1"
+                  className="text-base font-medium text-foreground-secondary hover:text-primary px-2 py-1"
                 >
                   {item.name}
                 </a>
