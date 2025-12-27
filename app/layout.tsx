@@ -49,6 +49,9 @@ export const metadata: Metadata = {
       },
     ],
   },
+  verification: {
+    google: "PASTE_THE_LONG_CODE_HERE", 
+  },
 }
 
 export const viewport: Viewport = {
