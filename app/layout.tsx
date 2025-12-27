@@ -30,6 +30,25 @@ export const metadata: Metadata = {
     ],
     apple: "/apple-icon.png",
   },
+  keywords: ["Amandi Udawatta", "Software Engineer", "Sri Lanka", "UCSC", "Full Stack Developer", "Portfolio"],
+  authors: [{ name: "Amandi Udawatta" }],
+  creator: "Amandi Udawatta",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://amandiudawatta.vercel.app/",
+    title: "Amandi Udawatta | Software Engineer",
+    description: "Full Stack Developer & CS Undergraduate based in Sri Lanka.",
+    siteName: "Amandi Udawatta Portfolio",
+    images: [
+      {
+        url: "/og-image.png", // (Optional) Add a screenshot of your site to /public folder named og-image.jpg
+        width: 1200,
+        height: 630,
+        alt: "Amandi Udawatta Portfolio",
+      },
+    ],
+  },
 }
 
 export const viewport: Viewport = {
