@@ -125,34 +125,7 @@ export default function SkillsSection() {
           </div>
         </div>
 
-        {/* Achievements Section */}
-        <div className="max-w-6xl mx-auto">
-          <h3 className="text-2xl lg:text-3xl font-bold text-foreground mb-8 text-center">
-            Competition <span className="text-primary">Highlights</span>
-          </h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {achievements.map((achievement, index) => (
-              <Card
-                key={index}
-                className="p-6 bg-surface border-border hover:border-primary transition-all duration-300 hover:shadow-lg text-center group"
-              >
-                <div className="flex flex-col items-center space-y-3">
-                  <div className="p-3 bg-primary/10 rounded-full group-hover:bg-primary/20 transition-colors">
-                    <achievement.icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="text-base font-bold text-foreground mb-1">{achievement.title}</h4>
-                    <p className="text-sm font-medium text-primary">{achievement.event}</p>
-                    <p className="text-xs text-foreground-tertiary mt-1">{achievement.category}</p>
-                  </div>
-                  <span className="text-xs font-semibold text-foreground-secondary bg-surface-elevated px-3 py-1 rounded-full">
-                    {achievement.year}
-                  </span>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </div>
+        
       </div>
     </section>
   )
