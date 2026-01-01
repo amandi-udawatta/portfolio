@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://amandiudawatta.vercel.app/",
+    url: "https://amandiudawatta.me/",
     title: "Amandi Udawatta | Software Engineer",
     description: "Full Stack Developer & CS Undergraduate based in Sri Lanka.",
     siteName: "Amandi Udawatta Portfolio",
