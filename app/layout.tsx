@@ -16,15 +16,16 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: "/icon.png",
-        media: "(prefers-color-scheme: light)",
+        url: "/favicon.ico", // Standard fallback
+        sizes: "any",        // Tells browser it can scale this
       },
       {
         url: "/icon.png",
-        media: "(prefers-color-scheme: dark)",
-      }
+        sizes: "96x96",      // Your high-quality 96x96 icon for Google
+        type: "image/png",
+      },
     ],
-    apple: "/icon.png",
+    apple: "/icon.png",      // For iOS home screen bookmarks
   },
   keywords: ["Amandi Udawatta", "Software Engineer", "Sri Lanka", "UCSC", "Full Stack Developer", "Portfolio"],
   authors: [{ name: "Amandi Udawatta" }],
