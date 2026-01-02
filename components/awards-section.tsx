@@ -4,7 +4,6 @@
  */
 
 import { Card } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge" // Assuming you have a Badge component, or use the span below
 
 export default function AwardsSection() {
   const awards = [

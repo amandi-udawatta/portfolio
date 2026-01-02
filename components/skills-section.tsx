@@ -3,8 +3,6 @@
  * Categorized Tech Stack with Official Logos
  */
 
-import { CheckCircle2 } from "lucide-react"
-
 export default function SkillsSection() {
   
   const skillCategories = [

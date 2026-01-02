@@ -21,7 +21,7 @@ export default function AboutSection() {
                 <div className="relative w-64 h-64 lg:w-full lg:h-auto rounded-2xl overflow-hidden ">
                   {/* REPLACE WITH YOUR IMAGE PATH */}
                   <img 
-                    src="/amandi.png" 
+                    src="/about/amandi.png" 
                     alt="Profile" 
                     className="w-full h-full object-cover"
                   />

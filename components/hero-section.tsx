@@ -5,7 +5,7 @@
  * Landing section with animated text, CTA buttons, and 3D Spline animation
  */
 
-import { ArrowRight, Github, Linkedin, Mail, FileText, ArrowDown, Download } from "lucide-react"
+import { Download } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Spline from "@splinetool/react-spline"
 import { useState } from "react"
@@ -59,7 +59,7 @@ export default function HeroSection() {
                 size="lg"
                 onClick={() => {
                   const link = document.createElement('a')
-                  link.href = '/Amandi_Udawatta_Resume.pdf'
+                  link.href = '/about/Amandi_Udawatta_Resume.pdf'
                   link.download = 'Amandi_Udawatta_Resume.pdf'
                   link.click()
                 }}

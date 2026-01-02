@@ -1,4 +1,4 @@
-import { BookOpen, Calendar, Star } from "lucide-react"
+import { Calendar, Star } from "lucide-react"
 
 export default function EducationSection() {
   const education = [
