@@ -13,7 +13,7 @@ export default function AboutSection() {
         </div>
 
         <div className="max-w-6xl mx-auto">
-          <div className="bg-surface rounded-2xl px-8 lg:px-12 ">
+          <div className="bg-surface rounded-2xl px-4 lg:px-8 ">
             <div className="grid lg:grid-cols-12 gap-10 items-center">
               
               {/* Photo Column (Left) */}

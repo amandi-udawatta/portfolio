@@ -75,7 +75,7 @@ export default function SkillsSection() {
         </div>
 
         {/* Main Tech Stack Grid */}
-        <div className="max-w-6xl mx-auto space-y-12 px-8 lg:px-12">
+        <div className="max-w-6xl mx-auto space-y-12 px-4 lg:px-8">
           
           {skillCategories.map((category, index) => (
             <div key={index} className="space-y-6">

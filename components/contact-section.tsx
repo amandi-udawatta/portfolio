@@ -115,7 +115,7 @@ export default function ContactSection() {
           </p>
         </div>
 
-        <div className="max-w-5xl mx-auto px-8 lg:px-12">
+        <div className="max-w-5xl mx-auto px-4 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-10 items-center">
             
             {/* Left Column - Vibe & Info */}

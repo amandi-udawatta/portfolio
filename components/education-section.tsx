@@ -41,8 +41,8 @@ export default function EducationSection() {
           </h2>
         </div>
 
-        <div className="max-w-4xl mx-auto">
-          <div className="space-y-12 relative">
+        <div className="max-w-4xl mx-auto px-4 lg:px-8">
+          <div className="space-y-12 relative ">
             
             {/* Vertical Line */}
             <div className="absolute left-6.75 top-2 bottom-2 w-0.5 bg-border sm:left-[50%] sm:-translate-x-1/2"></div>

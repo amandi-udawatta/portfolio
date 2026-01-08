@@ -10,7 +10,7 @@ export default function HeroSection() {
 
   return (
     // Added h-screen for desktops to keep everything above the fold
-    <section id="hero" className="min-h-screen lg:h-screen flex items-center justify-center relative pt-20 lg:pt-16 overflow-hidden">
+    <section id="hero" className="min-h-screen lg:h-screen flex items-center justify-center relative pt-20 lg:pt-16 px-4 lg:px-8 overflow-hidden">
       {/* Added max-w-7xl to prevent content from hitting the very edges of huge screens */}
       <div className="container mx-auto px-6 sm:px-10 lg:px-16 max-w-7xl">
         {/* Changed to 3 columns: 2 for text, 1 for fish */}
@@ -33,7 +33,7 @@ export default function HeroSection() {
             </p>
 
             <p className="text-sm sm:text-base lg:text-lg text-foreground-secondary max-w-2xl mx-auto lg:mx-0 italic">
-              P.S. Meet Puffy — He's curious. He follows your cursor.
+              P.S. Meet Puffy — He’s here to welcome you! He’ll keep an eye on things while you check out the rest.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
@@ -58,7 +58,7 @@ export default function HeroSection() {
             {/* 1. Adjusted h-[35vh] to ensure the container isn't too tall on mobile.
               2. Added 'aspect-square' to keep the container perfectly square for the fish.
             */}
-            <div className="fish-container w-full max-w-[280px] sm:max-w-sm lg:max-w-full h-[35vh] lg:h-[45vh] aspect-square flex items-center justify-center overflow-hidden">
+            <div className="fish-container w-full max-w-70 sm:max-w-sm lg:max-w-full h-[35vh] lg:h-[45vh] aspect-square flex items-center justify-center overflow-hidden">
               {isSplineLoading && (
                 <div className="absolute inset-0 flex items-center justify-center z-10">
                   <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin" />

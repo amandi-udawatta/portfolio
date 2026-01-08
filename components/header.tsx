@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button"
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const { theme, setTheme } = useTheme()
+  const { theme, setTheme, resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => setMounted(true), [])
@@ -83,10 +83,16 @@ export default function Header() {
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                // If the actual theme is dark, clicking sets it to light, and vice versa
+                onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
                 className="text-foreground hover:text-primary hover:bg-surface-elevated"
               >
-                {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                {/* 3. Use resolvedTheme to decide which icon to show */}
+                {mounted && resolvedTheme === "dark" ? (
+                  <Sun className="h-5 w-5" />
+                ) : (
+                  <Moon className="h-5 w-5" />
+                )}
               </Button>
             )}
 
