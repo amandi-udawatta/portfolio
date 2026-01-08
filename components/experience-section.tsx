@@ -66,7 +66,7 @@ export default function ExperienceSection() {
         </div>
 
         {/* Timeline */}
-        <div className="max-w-4xl mx-auto space-y-8">
+        <div className="max-w-4xl mx-auto space-y-8 px-8 lg:px-12">
           {experiences.map((exp, index) => (
             <Card
               key={index}

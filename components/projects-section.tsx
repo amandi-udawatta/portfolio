@@ -111,7 +111,7 @@ export default function ProjectsSection() {
         </div>
 
         {/* Projects Grid */}
-        <div className="max-w-5xl mx-auto space-y-6">
+        <div className="max-w-5xl mx-auto space-y-6 px-8 lg:px-12">
           {filteredProjects.map((project, index) => (
             <a 
               key={index} 
