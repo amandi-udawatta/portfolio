@@ -7,7 +7,7 @@ export default function EducationSection() {
       degree: "Bachelor of Science (Hons.) in Computer Science",
       period: "2022 – 2026",
       achievements: [
-        "Reading GPA: 3.6348",
+        "Reading GPA: 3.675",
         "Director’s List - 1st year 2nd semester, 3rd year 1st semester",
         
       ],
